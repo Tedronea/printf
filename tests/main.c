@@ -15,7 +15,6 @@ int _printf(const char *format, ...)
 	char c;   // store char if flag is %c
 	char *s;   //store char if flag is %s
 	int i;   // store an int if flag is %i
-	int d;   // store an int if flag is %d
 	size_t format_size; 
 	va_list ls;  //variable arguments list 
 	va_start(ls, format); 
