@@ -8,8 +8,10 @@
  */
 int _printf(const char *format, ...)
 {
-	char c;                      /** stores eachcharacter if flag is %c */
+	char c;                      /** stores each character if flag is %c */
 	char *s;                     /** stores each character if flag is %s */
+	int d;                     /** stores each character if flag is %d */
+	int i;                     /** stores each character if flag is %i */
 	va_list ls;
 
 	va_start(ls, format);
@@ -36,10 +38,15 @@ int _printf(const char *format, ...)
 				}
 				format += 1; /** continue printing the rest of the string */
 			}
+			if (*format == "i" || *format == "d") /** if an integer or a decimal */
+			{
+				d = va_arg(ls, int);  /** store argument in va_list */
+				_putchar(d);   /** print the value of the argument */
+				format++;   /** go to next character */
+			}
 		}
 		_putchar(*format);
 		format += 1;
 	}
-
 	return (0);
 }
