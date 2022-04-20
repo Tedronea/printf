@@ -8,10 +8,9 @@
  */
 int _printf(const char *format, ...)
 {
-	char c;                      /** stores each character if flag is %c */
-	char *s;                     /** stores each character if flag is %s */
-	int d;                     /** stores each character if flag is %d */
-	int i;                     /** stores each character if flag is %i */
+	char c;     /** stores each character if flag is %c */
+	char *s;    /** stores each character if flag is %s */
+	int d;      /** stores each character if flag is %d or %i*/
 	va_list ls;
 
 	va_start(ls, format);
