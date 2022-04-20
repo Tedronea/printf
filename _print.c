@@ -2,7 +2,7 @@
 
 /* @print: print a number*/
 
-void print(long n)
+void _print(long n)
 {
 	if (n < 0)
 	{
@@ -10,7 +10,7 @@ void print(long n)
 		n = -n;
 	}
 	if (n / 10)
-		print(n / 10);
+		_print(n / 10);
 	_putchar(n % 10 + '0');
 }
 

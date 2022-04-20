@@ -2,42 +2,48 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-//Putchar
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
-//Custom printf
+void _print(long n)
+{
+	if (n < 0)
+	{
+		_putchar('-');
+		n = -n;
+	}
+	if (n / 10)
+		_print(n / 10);
+	_putchar(n % 10 + '0');
+}
+
 int _printf(const char *format, ...)
 {
 
-	char c;   // store char if flag is %c
-	char *s;   //store char if flag is %s
-	int i;   // store an int if flag is %i
-	size_t format_size; 
-	va_list ls;  //variable arguments list 
+	char c;  
+	char *s;
+	int i;  
+	va_list ls; 
 	va_start(ls, format); 
 
 	while (*format != '\0')
 	{
-        //check if it has a % flag
 		if(*format == '%')
 		{
-            //if it does, go to the next char of the format array
+            
 			format++;
-            //if the next char is a 'c' replace with character from va_list ls
+            
 		
 			if(*format == 'c')
 			{
-                //save the char in variable c
 				c = va_arg(ls, int);
 				_putchar(c);
-				format++; //move to next char
+				format++; 
 			}
 			if(*format == 's')
 			{
-                //save the char in variable c
 				s = va_arg(ls, char *);
 				while (*s != '\0')
 				{
@@ -46,24 +52,24 @@ int _printf(const char *format, ...)
 				}
 				format++;
 			}
-			if (*format == "i" || *format == "d")
+			if (*format == 'i' || *format == 'd') /** if an integer or a decimal */
 			{
-		    // save the int in variable i
-		    		i = va_arg(ls, int);
-		    		_putchar(i);  // print the int
-		    		format++;  // go to the next
+				i = va_arg(ls, int);  /** store argument in va_list */
+				_print(i);   /** print the value of the argument */
+				format++;   /** go to next character */
 			}
 		}
+		_putchar(*format);
+		format++;
 	}
-	_putchar(*format);
-	format++;
 
 	va_end(ls);
 
 	return 0;
 }
 
-void main(){
-    _printf("Code a %s here\n", "word");
+int main(){
+    _printf("Code a %d here\n", 5435);
+	return (0);
 }
 

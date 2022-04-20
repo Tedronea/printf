@@ -15,13 +15,11 @@ int _printf(const char *format, ...)
 	va_list ls;
 
 	va_start(ls, format);
-
 	while (*format != '\0')      /** while EOF isnt reached */
 	{
 		if (*format == '%')         /** if character is % */
 		{
 			format += 1;        /** go to next character */
-
 			if (*format == 'c')  /** if next character is c */
 			{
 				c = va_arg(ls, int); /** fetch the next argument in va_list ls */
@@ -38,10 +36,10 @@ int _printf(const char *format, ...)
 				}
 				format += 1; /** continue printing the rest of the string */
 			}
-			if (*format == "i" || *format == "d") /** if an integer or a decimal */
+			if (*format == 'i' || *format == 'd') /** if an integer or a decimal */
 			{
 				d = va_arg(ls, int);  /** store argument in va_list */
-				_putchar(d);   /** print the value of the argument */
+				_print(d);   /** print the value of the argument */
 				format++;   /** go to next character */
 			}
 		}
